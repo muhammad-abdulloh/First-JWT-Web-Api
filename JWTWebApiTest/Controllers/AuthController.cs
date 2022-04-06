@@ -52,7 +52,7 @@ namespace JWTWebApiTest.Controllers
             return Ok(token);
         }
 
-        private string CreateToken(User user){
+        private string CreateToken(User user) {
 
             List<Claim> claims = new List<Claim>
             {
@@ -75,7 +75,7 @@ namespace JWTWebApiTest.Controllers
         }
 
 
-        private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt){
+        private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt) {
             using (var hmac = new HMACSHA512())
             {
                 passwordSalt = hmac.Key;
