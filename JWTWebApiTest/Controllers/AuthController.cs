@@ -6,21 +6,21 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 
+#pragma warning disable
 namespace JWTWebApiTest.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class Authsontroller : ControllerBase
+    public class AuthController : ControllerBase
     {
         public static User user = new User();
 
         public IConfiguration _configuration { get; }
 
-        public Authsontroller(IConfiguration configuration)
+        public AuthController(IConfiguration configuration)
         {
             _configuration = configuration;
         }
-
 
         [HttpPost("register")]
         public async Task<ActionResult<User>> Register(UserDto request)
@@ -33,7 +33,6 @@ namespace JWTWebApiTest.Controllers
 
             return Ok(user);
         }
-
 
         [HttpPost("login")]
         public async Task<ActionResult<User>> Login(UserDto request)
@@ -53,9 +52,7 @@ namespace JWTWebApiTest.Controllers
             return Ok(token);
         }
 
-
-        private string CreateToken(User user)
-        {
+        private string CreateToken(User user){
 
             List<Claim> claims = new List<Claim>
             {
@@ -78,8 +75,7 @@ namespace JWTWebApiTest.Controllers
         }
 
 
-        private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
-        {
+        private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt){
             using (var hmac = new HMACSHA512())
             {
                 passwordSalt = hmac.Key;
