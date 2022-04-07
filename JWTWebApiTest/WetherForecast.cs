@@ -1,4 +1,4 @@
-namespace JWTWebApiTest
+﻿namespace JWTWebApiTest
 {
     public class WeatherForecast
     {
